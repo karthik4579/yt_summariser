@@ -55,12 +55,13 @@ class ProcessLink:
 
 class handleargs():
      def processargs(self):
-        self.getargs()
+        args = self.getargs()
         if not args.link and not args.summarise:
             print('Welcome to YT summariser | Transcriber :) \nType: --help for Usage instructions')
         else:
             pass
-
+        
+        print(args.webui)
         if args.link is not None:
             process = ProcessLink(args.link,args.summarise)
             process.processlink()
@@ -72,15 +73,9 @@ class handleargs():
         # Arguments
         parser.add_argument("--link",type=str,help="The a video link that is needed to generate the transcription")
         parser.add_argument("--summarise",type=str,help="Set this to yes or no to summarise the generated transcription By default the transcription will be generated")
+        parser.add_argument("--webui",type=int,default=7860,help="Set this to any port you want the WebUI to run on by default port is 7860")
+
         
         # Parse the args
         args = parser.parse_args()
         return args
-        
-
-
-
-
-if __name__ == '__main__':
-    cli = handleargs()
-    process_inputs = cli.processargs()
